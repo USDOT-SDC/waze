@@ -1,0 +1,12 @@
+# Always convert line endings to LF on checkout.
+* text eol=lf
+
+# Exclude specific binary files
+*.png binary
+*.jpg binary
+*.webp binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.jar binary
+*.war binary

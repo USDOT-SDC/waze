@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"docstrings",
+			"FISMA",
+			"hostedzone",
+			"ISSO",
+			"manylinux",
+			"pycache",
+			"tfapply"
+		]
+	}
+}
