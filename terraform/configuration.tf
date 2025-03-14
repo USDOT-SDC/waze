@@ -17,6 +17,10 @@ terraform {
       source  = "hashicorp/template"
       version = "~> 2.2"
     }
+    time = {
+      source = "hashicorp/time"
+      version = "~> 0.13"
+    }
   }
   backend "s3" {
     # Variables can not be used here

@@ -34,6 +34,9 @@ goto end
 :execute
 pushd ..\terraform
 %command%
+echo.
+echo Terraform will now validate the configuration:
+terraform validate
 popd ..\scripts
 goto end
 

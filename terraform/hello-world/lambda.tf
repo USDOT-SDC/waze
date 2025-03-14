@@ -1,48 +1,46 @@
 locals {
-  runtime_name       = "python"
-  runtime_version    = "3.13"
-  runtime            = "${local.runtime_name}${local.runtime_version}"
-  source_dir         = "${var.module_slug}\\src"
-  site_packages_dir  = "${local.source_dir}\\python\\lib\\${local.runtime}\\site-packages"
-  site_packages_mark = "${local.site_packages_dir}\\.mark"
-  exclude_venv       = fileset("${path.module}/src/", ".venv/**/*")
-  exclude_pycache    = fileset("${path.module}/src/", "**/__pycache__/**/*")
-  exclude_dist_info  = fileset("${path.module}/src/", "**/*.dist-info/**/*")
-  excludes = setunion(
-    local.exclude_venv,
-    local.exclude_pycache,
-    local.exclude_dist_info,
-    [
-      ".gitignore",
-    ]
-  )
+  runtime_name      = "python"
+  runtime_version   = "3.13"
+  runtime           = "${local.runtime_name}${local.runtime_version}"
+  src_path          = "${var.module_slug}\\src"
+  packages_path     = "${local.src_path}\\python\\lib\\${local.runtime}\\site-packages"
+  last_rotation     = var.common.time.rotating.hours.12
+  mark_path         = "${local.packages_path}\\.mark"
 }
 
 resource "terraform_data" "pip_install" {
-  #   note: Change whitespace in requirements.txt or delete site packages dir to trigger one time
   triggers_replace = {
-    requirements       = filesha256("${path.module}/requirements.txt")
-    site_packages_mark = fileexists(local.site_packages_mark)
+    # Change whitespace in requirements.txt or delete site packages dir to trigger one time
+    requirements = filesha256("${path.module}/requirements.txt")
+    # If site packages does not exist, ensures it's built before trying to zip non-existent path
+    mark_file_exists = fileexists(local.mark_path)
+    # Ensures site packages are rebuilt and upgraded often
+    last_rotation = local.last_rotation
   }
 
   provisioner "local-exec" {
-    command = "if exist ${local.source_dir}\\python\\ rmdir ${local.source_dir}\\python /S /Q"
+    command = "if exist ${local.src_path}\\python\\ rmdir ${local.src_path}\\python /S /Q"
   }
 
   provisioner "local-exec" {
-    command = "if not exist ${local.site_packages_dir} mkdir ${local.site_packages_dir} & echo foobar > ${local.site_packages_mark}"
+    command = "if not exist ${local.packages_path} mkdir ${local.packages_path} & echo ${timestamp()} > ${local.mark_path}"
   }
 
   provisioner "local-exec" {
-    command = "pip install --platform manylinux2014_x86_64 --only-binary=:all: --no-binary=:none: --implementation cp --python-version ${local.runtime_version} --upgrade -t ${local.site_packages_dir} -r ${path.module}\\requirements.txt"
+    command = "pip install --platform manylinux2014_x86_64 --only-binary=:all: --no-binary=:none: --implementation cp --python-version ${local.runtime_version} --upgrade -t ${local.packages_path} -r ${path.module}\\requirements.txt"
   }
 }
 
 data "archive_file" "this" {
   type        = "zip"
-  source_dir  = local.source_dir
+  source_dir  = local.src_path
   output_path = "${path.module}/deployment/package.zip"
-  excludes    = local.excludes
+  excludes    = setunion(
+    fileset("${path.module}/src/", ".venv/**/*"),
+    fileset("${path.module}/src/", "**/__pycache__/**/*"),
+    fileset("${path.module}/src/", "**/*.dist-info/**/*"),
+    fileset("${path.module}/src/", "**/.mark"),
+  )
   depends_on  = [terraform_data.pip_install]
 }
 
