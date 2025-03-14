@@ -10,3 +10,4 @@
 # six
 # simplejson
 # urllib3
+requests~=2.32
