@@ -17,12 +17,25 @@ locals {
     app_slug                    = "waze"
     secrets_path                = "../../waze-secrets"
     config_version              = var.config_version
+    time = {
+      rotating = {
+        hours = {
+          8  = time_rotating._8hours.id
+          12 = time_rotating._12hours.id
+          24 = time_rotating._24hours.id
+        }
+        days = {
+          7  = time_rotating._7days.id
+          30 = time_rotating._30days.id
+        }
+      }
+    }
   }
   default_tags = {
-    Repository     = "waze"
-    Project        = "DP: Waze"
-    Team           = "DP: Waze"
-    Owner          = "Support Team"
+    Repository = "waze"
+    Project    = "DP: Waze"
+    Team       = "DP: Waze"
+    Owner      = "Support Team"
   }
 }
 
