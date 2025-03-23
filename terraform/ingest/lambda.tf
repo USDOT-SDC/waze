@@ -67,11 +67,44 @@ resource "aws_lambda_function" "this" {
   role              = aws_iam_role.this.arn
   handler           = "lambda_function.lambda_handler"
   runtime           = local.runtime
-  timeout           = 60
-  # environment {
-  #   variables = var.foo.environment_variables
-  # }
+  timeout           = 300 # normal run time is around 250 seconds
+  environment {
+    variables = {
+      RAW_BUCKET      = var.raw_bucket.bucket,
+      PARTNER_ID      = var.partner_id,
+    }
+  }
   # depends_on = [data.archive_file.this]
   depends_on = [aws_s3_object.deployment_package]
   tags       = local.common_tags
+}
+
+resource "aws_lambda_permission" "this" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.this.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.this.arn
+}
+
+resource "aws_cloudwatch_event_rule" "this" {
+  name                = "this"
+  description         = "Triggers the ingest Lambda"
+  schedule_expression = "cron(0/5 * * * ? *)"
+  # at minute 0/every 5 minutes, every hour, day of the month, month, day of the week and year
+  # (Min Hr DoM M DoW Y)
+  # You can't use * in both the Day-of-month and Day-of-week fields. 
+  # If you use it in one, you must use ? in the other.
+}
+
+resource "aws_cloudwatch_event_target" "this" {
+  rule      = aws_cloudwatch_event_rule.this.name
+  target_id = "InvokeLambda"
+  arn       = aws_lambda_function.this.arn
+}
+
+resource "aws_cloudwatch_log_group" "this" {
+  name              = "/aws/lambda/${aws_lambda_function.this.function_name}"
+  skip_destroy      = "true"
+  retention_in_days = 180
 }
