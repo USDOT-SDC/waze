@@ -30,7 +30,7 @@ def load_event_from_file(filename):
 
 if __name__ == "__main__":
     # Load the event JSON file and instantiate the context
-    event = load_event_from_file("run-lambda.json")
+    event = load_event_from_file("local-event.json")
     context = MockContext()
 
     # Invoke the Lambda function
