@@ -13,7 +13,7 @@ terraform/**/*.conf
 
 # Lambda deployment packages
 terraform/**/deployment
-terraform/**/src/python
+terraform/**/src/site-packages
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,terraform,python,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,terraform,python,visualstudiocode

@@ -3,7 +3,7 @@ locals {
   runtime_version   = "3.13"
   runtime           = "${local.runtime_name}${local.runtime_version}"
   src_path          = "${var.module_slug}\\src"
-  packages_path     = "${local.src_path}\\python\\lib\\${local.runtime}\\site-packages"
+  packages_path     = "${local.src_path}\\site-packages"
   last_rotation     = var.common.time.rotating.hours.12
   mark_path         = "${local.packages_path}\\.mark"
 }
