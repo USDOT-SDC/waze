@@ -2,6 +2,14 @@ data "aws_ssm_parameter" "account_id" {
   name = "account_id"
 }
 
+data "aws_ssm_parameter" "account_id_dev" {
+  name = "account_id_dev"
+}
+
+data "aws_ssm_parameter" "account_id_prod" {
+  name = "account_id_prod"
+}
+
 data "aws_ssm_parameter" "region" {
   name = "region"
 }
