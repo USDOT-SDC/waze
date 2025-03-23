@@ -34,7 +34,29 @@ resource "aws_iam_role_policy" "this_allow_logs" {
             "logs:PutMetricFilter",
             "logs:PutRetentionPolicy"
           ],
-          Resource : "*"
+          Resource : "${aws_cloudwatch_log_group.this.arn}:*"
+        }
+      ]
+    }
+  )
+}
+
+resource "aws_iam_role_policy" "this_allow_put_s3_raw" {
+  name = "allow_put_s3_raw"
+  role = aws_iam_role.this.id
+  policy = jsonencode(
+    {
+      Version : "2012-10-17",
+      Statement : [
+        {
+          Effect : "Allow",
+          Action : [
+            "s3:PutObject",
+          ],
+          Resource : [
+            var.raw_bucket.arn,
+            "${var.raw_bucket.arn}/*"
+          ]
         }
       ]
     }
@@ -45,5 +67,9 @@ resource "aws_iam_role_policies_exclusive" "this" {
   role_name = aws_iam_role.this.name
   policy_names = [
     aws_iam_role_policy.this_allow_logs.name,
+    aws_iam_role_policy.this_allow_put_s3_raw.name,
   ]
 }
+
+
+# arn:aws:sts::505135622787:assumed-role/platform.lambda.waze.ingest.role/waze_ingest

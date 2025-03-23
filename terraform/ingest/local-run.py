@@ -1,6 +1,7 @@
 from src.lambda_function import lambda_handler
 import json
-import datetime
+# import datetime
+from datetime import datetime, timezone
 import time
 import os
 import uuid
@@ -8,7 +9,7 @@ import uuid
 class MockContext:
     def __init__(self):
         function_name = os.path.basename(os.path.dirname(__file__))
-        now = datetime.datetime.now()
+        now = datetime.now()
         self.function_name = function_name
         self.function_version = "$LATEST"
         self.invoked_function_arn = f"arn:aws:lambda:us-east-1:123456789012:function:{function_name}"
@@ -31,6 +32,7 @@ def load_event_from_file(filename):
 if __name__ == "__main__":
     # Load the event JSON file and instantiate the context
     event = load_event_from_file("local-event.json")
+    event["time"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     context = MockContext()
 
     # Invoke the Lambda function
