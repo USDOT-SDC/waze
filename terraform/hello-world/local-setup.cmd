@@ -14,10 +14,10 @@ if not exist ".venv\" (
     echo Updating pip and setuptools
     python -m pip install --upgrade pip setuptools
     echo Installing dependencies...
-    if exist requirements-local.txt (
-        pip install -r requirements-local.txt
+    if exist local-requirements.txt (
+        pip install -r local-requirements.txt
     ) else (
-        echo No requirements-local.txt found. Skipping package installation.
+        echo No local-requirements.txt found. Skipping package installation.
     )
 ) else (
     echo Virtual environment found.
@@ -25,10 +25,10 @@ if not exist ".venv\" (
     echo Updating pip and setuptools
     python -m pip install --upgrade pip setuptools
     echo Updating dependencies...
-    if exist requirements-local.txt (
-        pip install --upgrade -r requirements-local.txt
+    if exist local-requirements.txt (
+        pip install --upgrade -r local-requirements.txt
     ) else (
-        echo No requirements-local.txt found. Skipping package update.
+        echo No local-requirements.txt found. Skipping package update.
     )
 )
 
