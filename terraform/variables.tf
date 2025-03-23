@@ -4,11 +4,14 @@ locals {
   # local.common is output to tfstate and used by other configurations
   common = {
     account_id                  = nonsensitive(data.aws_ssm_parameter.account_id.value)
+    account_id_other            = nonsensitive(data.aws_ssm_parameter.environment.value) == "dev" ? nonsensitive(data.aws_ssm_parameter.account_id_prod.value) : nonsensitive(data.aws_ssm_parameter.account_id_dev.value)
     region                      = nonsensitive(data.aws_ssm_parameter.region.value)
     environment                 = nonsensitive(data.aws_ssm_parameter.environment.value)
+    environment_other           = nonsensitive(data.aws_ssm_parameter.environment.value) == "dev" ? "prod" : "dev"
     support_email               = nonsensitive(data.aws_ssm_parameter.support_email.value)
     admin_email                 = nonsensitive(data.aws_ssm_parameter.admin_email.value)
     vpc                         = data.terraform_remote_state.infrastructure.outputs.vpc
+    s3_bucket_prefix            = "gov.dot.sdc.${nonsensitive(data.aws_ssm_parameter.environment.value)}"
     terraform_bucket            = data.terraform_remote_state.infrastructure.outputs.s3.terraform
     backup_bucket               = data.terraform_remote_state.infrastructure.outputs.s3.backup
     instance_maintenance_bucket = data.terraform_remote_state.infrastructure.outputs.s3.instance_maintenance
