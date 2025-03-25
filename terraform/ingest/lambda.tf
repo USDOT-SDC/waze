@@ -90,7 +90,7 @@ resource "aws_lambda_permission" "this" {
 resource "aws_cloudwatch_event_rule" "this" {
   name                = "this"
   description         = "Triggers the ingest Lambda"
-  schedule_expression = "cron(0/5 * * * ? *)"
+  schedule_expression = "cron(0/2 * * * ? *)"
   # at minute 0/every 5 minutes, every hour, day of the month, month, day of the week and year
   # (Min Hr DoM M DoW Y)
   # You can't use * in both the Day-of-month and Day-of-week fields. 
