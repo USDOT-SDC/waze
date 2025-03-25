@@ -64,7 +64,7 @@ def get_endpoint(
     :return: Formatted API URL.
     """
     if revision == "3.0":
-        return f"https://www.waze.com/partnerhub-api/partners/{partner_id}/waze-feeds/{unique_token}?format={return_format}&types={types}"
+        return f"https://www.waze.com/partnerhub-api/partners/{partner_id}/waze-feeds/{unique_token}?format={return_format}&types={types}&acotu=true"
     else:
         return ""
 
