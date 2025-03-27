@@ -14,3 +14,20 @@ module "ingest" {
   raw_bucket          = aws_s3_bucket.raw
   standardized_bucket = aws_s3_bucket.standardized
 }
+
+# module "ingest_orchestrator" {
+#   module_name   = "Ingest Orchestrator"
+#   module_slug   = "ingest_orchestrator"
+#   source        = "./ingest-orchestrator"
+#   common        = local.common
+#   ingest_lambda = module.ingest2ddb.lambda
+# }
+
+# module "ingest2ddb" {
+#   module_name         = "Ingest to DDB"
+#   module_slug         = "ingest2ddb"
+#   source              = "./ingest2ddb"
+#   common              = local.common
+#   partner_id          = nonsensitive(data.aws_ssm_parameter.partner_id.value)
+#   orchestrator_lambda = module.ingest_orchestrator.lambda
+# }
