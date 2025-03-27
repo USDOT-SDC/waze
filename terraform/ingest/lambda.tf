@@ -88,7 +88,7 @@ resource "aws_lambda_permission" "this" {
 }
 
 resource "aws_cloudwatch_event_rule" "this" {
-  name                = "this"
+  name                = "${var.common.app_slug}_${var.module_slug}"
   description         = "Triggers the ingest Lambda"
   schedule_expression = "cron(0/2 * * * ? *)"
   # at minute 0/every 5 minutes, every hour, day of the month, month, day of the week and year
