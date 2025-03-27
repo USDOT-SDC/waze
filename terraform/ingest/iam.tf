@@ -21,24 +21,25 @@ resource "aws_iam_role" "this" {
 resource "aws_iam_role_policy" "this_allow_logs" {
   name = "allow_logs"
   role = aws_iam_role.this.id
-  policy = jsonencode(
-    {
-      Version : "2012-10-17",
-      Statement : [
-        {
-          Effect : "Allow",
-          Action : [
-            "logs:CreateLogGroup",
-            "logs:CreateLogStream",
-            "logs:PutLogEvents",
-            "logs:PutMetricFilter",
-            "logs:PutRetentionPolicy"
-          ],
-          Resource : "${aws_cloudwatch_log_group.this.arn}:*"
-        }
-      ]
-    }
-  )
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = "logs:CreateLogGroup"
+        Resource = aws_cloudwatch_log_group.this.arn
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+        Resource = "${aws_cloudwatch_log_group.this.arn}:log-stream:*"
+      }
+    ]
+  })
 }
 
 resource "aws_iam_role_policy" "this_allow_put_s3_raw" {
