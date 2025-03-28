@@ -10,6 +10,7 @@ import requests
 from botocore.exceptions import BotoCoreError, NoCredentialsError
 from typing import Dict, List, Union
 import decimal
+import itertools
 
 
 def get_partner_id() -> str:
@@ -57,8 +58,7 @@ def get_data_hash(data: dict) -> Dict[str, Union[str, dict]]:
     """Generates a SHA256 hash for deduplication."""
     json_str = json.dumps(data, sort_keys=True, separators=(",", ":"))
     return {
-        "uuid": str(data.get("uuid", data.get("id"))),
-        "hash": hashlib.sha256(json_str.encode("utf-8")).hexdigest(),
+        "uuid_hash": str(data.get("uuid", data.get("id"))) + "_" + hashlib.sha256(json_str.encode("utf-8")).hexdigest(),
         "data": data,
     }
 
@@ -74,36 +74,57 @@ def convert_floats_to_decimal(data):
     return data
 
 
-def persist_data_to_ddb(data_hash: dict) -> None:
-    """Persists data to DynamoDB if it's not a duplicate."""
-    data_type = data_hash.get("type", "unknown")
-    table_name = f"waze_ingest_{data_type}"
+def chunk_list(data_list, chunk_size):
+    """Splits a list into chunks of given size."""
+    for i in range(0, len(data_list), chunk_size):
+        yield data_list[i : i + chunk_size]
 
+
+def persist_data_to_ddb(data_list: list[dict], data_type: str) -> None:
+    """Persists data to DynamoDB if it's not a duplicate, using batch_get_item() in chunks of 100."""
+    if not data_list:
+        return
+
+    table_name = f"waze_ingest_{data_type}"
     dynamodb = boto3.resource("dynamodb")
     table = dynamodb.Table(table_name)
+    client = boto3.client("dynamodb")
 
-    try:
-        data_hash = convert_floats_to_decimal(data_hash)
+    # Convert float values to decimal
+    data_list = [convert_floats_to_decimal(item) for item in data_list]
 
-        response = table.get_item(Key={"uuid": data_hash["uuid"], "hash": data_hash["hash"]})
-        if "Item" in response:
-            print(f"Duplicate detected: UUID {data_hash['uuid']}, skipping.")
+    # Prepare batch get keys
+    keys = [{"uuid_hash": {"S": item["uuid_hash"]}} for item in data_list]
+
+    existing_items = set()
+
+    # Process batch_get_item in chunks of 100
+    for key_chunk in chunk_list(keys, 100):
+        try:
+            response = client.batch_get_item(RequestItems={table_name: {"Keys": key_chunk}})
+            for item in response.get("Responses", {}).get(table_name, []):
+                existing_items.add(item["uuid_hash"]["S"])
+        except BotoCoreError as e:
+            print(f"Error fetching existing items: {e}")
             return
 
-        table.put_item(
-            Item={
-                "uuid": data_hash["uuid"],
-                "hash": data_hash["hash"],
-                "utc_epoch": data_hash.get("utc_epoch", 0),
-                "data": data_hash.get("data", {}),
-            }
-        )
-        print(f"Data persisted for UUID {data_hash['uuid']} in {table_name}")
+    # Filter out duplicates
+    new_items = [item for item in data_list if item["uuid_hash"] not in existing_items]
 
-    except BotoCoreError as e:
-        print(f"Failed to persist data to {table_name}: {e}")
-    except Exception as e:
-        print(f"Unexpected error persisting data to {table_name}: {e}")
+    # Persist only new/changed items
+    with table.batch_writer() as batch:
+        for item in new_items:
+            try:
+                batch.put_item(
+                    Item={
+                        "uuid_hash": item["uuid_hash"],
+                        "utc_epoch": item.get("utc_epoch", 0),
+                        "data": item.get("data", {}),
+                    }
+                )
+                print(f"Data persisted for UUID_HASH {item['uuid_hash']} in {table_name}")
+            except BotoCoreError as e:
+                print(f"Failed to persist UUID_HASH {item['uuid_hash']}: {e}")
 
 
 def lambda_handler(event: Dict, context) -> None:
@@ -123,11 +144,15 @@ def lambda_handler(event: Dict, context) -> None:
         print(f"Processing {state_name}: {data_type} for UTC Epoch: {utc_epoch}")
 
         this_data_type = data.get(data_type, [])
+        data_batch = []  # Collect items before persisting
+
         for datum in this_data_type:
             data_hash = get_data_hash(datum)
             data_hash["type"] = data_type
             data_hash["utc_epoch"] = utc_epoch
+            data_batch.append(data_hash)
 
-            persist_data_to_ddb(data_hash)
+        # Call persist_data_to_ddb once per data_type, not per item
+        persist_data_to_ddb(data_batch, data_type)
 
     print(f"Completed processing for {state_name}")

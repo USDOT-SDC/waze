@@ -56,13 +56,16 @@ resource "aws_iam_role_policy" "this_allow_put_ddb" {
           "dynamodb:PutItem",
           "dynamodb:GetItem",
           "dynamodb:UpdateItem",
-          "dynamodb:Scan"
+          "dynamodb:Scan",
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem"
         ]
         Resource = [for table in aws_dynamodb_table.this : table.arn]
       }
     ]
   })
 }
+
 
 
 resource "aws_iam_role_policies_exclusive" "this" {
