@@ -35,13 +35,22 @@ def clear_console():
 
 if __name__ == "__main__":
     clear_console()
+    
     # Load the event JSON file and instantiate the context
-    event = load_event_from_file("local-event.json")
+    event = load_event_from_file("local-event-lg.json")
     event["time"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     context = MockContext()
+
+    # Start Timer
+    start_time = time.perf_counter()
 
     # Invoke the Lambda function
     response = lambda_handler(event, context)
 
-    # Print the response
+    # End Timer
+    end_time = time.perf_counter()
+    execution_time = end_time - start_time
+
+    # Print the response and execution time
     print(json.dumps(response, indent=3))
+    print(f"\nExecution Time: {execution_time:.4f} seconds")
