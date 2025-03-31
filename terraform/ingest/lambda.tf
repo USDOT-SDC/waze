@@ -1,11 +1,11 @@
 locals {
-  runtime_name      = "python"
-  runtime_version   = "3.13"
-  runtime           = "${local.runtime_name}${local.runtime_version}"
-  src_path          = "${var.module_slug}\\src"
-  packages_path     = "${local.src_path}\\site-packages"
-  last_rotation     = var.common.time.rotating.hours.12
-  mark_path         = "${local.packages_path}\\.mark"
+  runtime_name    = "python"
+  runtime_version = "3.13"
+  runtime         = "${local.runtime_name}${local.runtime_version}"
+  src_path        = "${var.module_slug}\\src"
+  packages_path   = "${local.src_path}\\site-packages"
+  last_rotation   = var.common.time.rotating.hours.12
+  mark_path       = "${local.packages_path}\\.mark"
 }
 
 resource "terraform_data" "pip_install" {
@@ -35,13 +35,13 @@ data "archive_file" "this" {
   type        = "zip"
   source_dir  = local.src_path
   output_path = "${path.module}/deployment/package.zip"
-  excludes    = setunion(
+  excludes = setunion(
     fileset("${path.module}/src/", ".venv/**/*"),
     fileset("${path.module}/src/", "**/__pycache__/**/*"),
     fileset("${path.module}/src/", "**/*.dist-info/**/*"),
     fileset("${path.module}/src/", "**/.mark"),
   )
-  depends_on  = [terraform_data.pip_install]
+  depends_on = [terraform_data.pip_install]
 }
 
 resource "aws_s3_object" "deployment_package" {
@@ -67,11 +67,12 @@ resource "aws_lambda_function" "this" {
   role              = aws_iam_role.this.arn
   handler           = "lambda_function.lambda_handler"
   runtime           = local.runtime
-  timeout           = 300 # normal run time is around 250 seconds
+  timeout           = 350 # normal run time is around 250 seconds
+  memory_size       = 160 # Recommendation from AWS Compute Optimizer
   environment {
     variables = {
-      RAW_BUCKET      = var.raw_bucket.bucket,
-      PARTNER_ID      = var.partner_id,
+      RAW_BUCKET = var.raw_bucket.bucket,
+      PARTNER_ID = var.partner_id,
     }
   }
   # depends_on = [data.archive_file.this]
