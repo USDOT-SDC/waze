@@ -68,6 +68,7 @@ resource "aws_lambda_function" "this" {
   handler           = "lambda_function.lambda_handler"
   runtime           = local.runtime
   timeout           = 900 # normal run time is around 250 seconds
+  memory_size       = 256
   environment {
     variables = {
       PARTNER_ID = var.partner_id,
