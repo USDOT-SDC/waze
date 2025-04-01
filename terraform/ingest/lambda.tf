@@ -107,5 +107,5 @@ resource "aws_cloudwatch_event_target" "this" {
 resource "aws_cloudwatch_log_group" "this" {
   name              = "/aws/lambda/${aws_lambda_function.this.function_name}"
   skip_destroy      = "true"
-  retention_in_days = 180
+  retention_in_days = 90
 }
