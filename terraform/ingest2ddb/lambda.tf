@@ -67,11 +67,10 @@ resource "aws_lambda_function" "this" {
   role              = aws_iam_role.this.arn
   handler           = "lambda_function.lambda_handler"
   runtime           = local.runtime
-  timeout           = 350 # normal run time is around 250 seconds
-  memory_size       = 192 # Recommendation from AWS Compute Optimizer
+  timeout           = 180 # a typical daily peak for max run time is around 45 seconds
+  memory_size       = 256
   environment {
     variables = {
-      RAW_BUCKET = var.raw_bucket.bucket,
       PARTNER_ID = var.partner_id,
     }
   }
@@ -80,29 +79,14 @@ resource "aws_lambda_function" "this" {
   tags       = local.common_tags
 }
 
-resource "aws_lambda_permission" "this" {
-  statement_id  = "AllowExecutionFromCloudWatch"
+resource "aws_lambda_permission" "allow_orchestrator" {
+  statement_id  = "AllowExecutionFromOrchestrator"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.this.function_name
-  principal     = "events.amazonaws.com"
-  source_arn    = aws_cloudwatch_event_rule.this.arn
+  principal     = "lambda.amazonaws.com"
+  source_arn    = var.orchestrator_lambda.arn
 }
 
-resource "aws_cloudwatch_event_rule" "this" {
-  name                = "${var.common.app_slug}_${var.module_slug}"
-  description         = "Triggers the ingest Lambda"
-  schedule_expression = "cron(0/2 * * * ? *)"
-  # at minute 0/every 5 minutes, every hour, day of the month, month, day of the week and year
-  # (Min Hr DoM M DoW Y)
-  # You can't use * in both the Day-of-month and Day-of-week fields. 
-  # If you use it in one, you must use ? in the other.
-}
-
-resource "aws_cloudwatch_event_target" "this" {
-  rule      = aws_cloudwatch_event_rule.this.name
-  target_id = "InvokeLambda"
-  arn       = aws_lambda_function.this.arn
-}
 
 resource "aws_cloudwatch_log_group" "this" {
   name              = "/aws/lambda/${aws_lambda_function.this.function_name}"
