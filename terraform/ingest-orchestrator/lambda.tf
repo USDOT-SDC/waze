@@ -18,7 +18,7 @@ resource "aws_lambda_function" "this" {
   role             = aws_iam_role.this.arn
   handler          = "lambda_function.lambda_handler"
   runtime          = local.runtime
-  timeout          = 60
+  timeout          = 180 # typical max run time is around 115 seconds
   memory_size      = 160 # Recommendation from AWS Compute Optimizer
   environment {
     variables = { INGEST_LAMBDA = var.ingest_lambda.function_name }

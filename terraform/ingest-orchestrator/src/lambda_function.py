@@ -3,6 +3,7 @@ from pathlib import Path
 import os
 import boto3
 import json
+import time
 
 lambda_client = boto3.client("lambda")
 
@@ -48,5 +49,6 @@ def lambda_handler(event, context):
         )
 
         print(f"Invoked {get_ingest_lambda()} for {state_name}, response: {response}")
+        time.sleep(1.6)
 
     return {"status": "Orchestration completed"}
