@@ -6,19 +6,41 @@ variable "ddb_table_names" {
 
 # Create a DynamoDB table for each data type
 resource "aws_dynamodb_table" "this" {
-  for_each     = toset(var.ddb_table_names)
-  name         = each.key
-  billing_mode = "PROVISIONED"
-  # read_capacity = 0
-  hash_key = "uuid_hash"
+  for_each       = toset(var.ddb_table_names)
+  name           = each.key
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 10
+  write_capacity = 10
+  hash_key       = "uuid_hash"
 
   attribute {
     name = "uuid_hash"
     type = "S" # String
   }
 
+  attribute {
+    name = "utc_partition"
+    type = "N" # Number
+  }
+
+  global_secondary_index {
+    name               = "utc_partition_index"
+    hash_key           = "utc_partition"
+    projection_type    = "INCLUDE"
+    non_key_attributes = ["data"]
+    read_capacity      = 10
+    write_capacity     = 10
+  }
+
   point_in_time_recovery {
     enabled = false
+  }
+
+  lifecycle {
+    ignore_changes = [
+      read_capacity,
+      write_capacity
+    ]
   }
 
   tags = {
@@ -75,7 +97,7 @@ resource "aws_appautoscaling_target" "alerts_read" {
   min_capacity       = local.autoscaling.alerts.read.min_capacity
   service_namespace  = "dynamodb"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
-  resource_id        = "table/waze_ingest_alerts"
+  resource_id        = "table/${aws_dynamodb_table.this["waze_ingest_alerts"].name}"
 }
 
 resource "aws_appautoscaling_policy" "alerts_read" {
@@ -98,7 +120,7 @@ resource "aws_appautoscaling_target" "alerts_write" {
   min_capacity       = local.autoscaling.alerts.write.min_capacity
   service_namespace  = "dynamodb"
   scalable_dimension = "dynamodb:table:WriteCapacityUnits"
-  resource_id        = "table/waze_ingest_alerts"
+  resource_id        = "table/${aws_dynamodb_table.this["waze_ingest_alerts"].name}"
 }
 
 resource "aws_appautoscaling_policy" "alerts_write" {
@@ -123,7 +145,7 @@ resource "aws_appautoscaling_target" "irregularities_read" {
   min_capacity       = local.autoscaling.irregularities.read.min_capacity
   service_namespace  = "dynamodb"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
-  resource_id        = "table/waze_ingest_irregularities"
+  resource_id        = "table/${aws_dynamodb_table.this["waze_ingest_irregularities"].name}"
 }
 
 resource "aws_appautoscaling_policy" "irregularities_read" {
@@ -146,7 +168,7 @@ resource "aws_appautoscaling_target" "irregularities_write" {
   min_capacity       = local.autoscaling.irregularities.write.min_capacity
   service_namespace  = "dynamodb"
   scalable_dimension = "dynamodb:table:WriteCapacityUnits"
-  resource_id        = "table/waze_ingest_irregularities"
+  resource_id        = "table/${aws_dynamodb_table.this["waze_ingest_irregularities"].name}"
 }
 
 resource "aws_appautoscaling_policy" "irregularities_write" {
@@ -171,7 +193,7 @@ resource "aws_appautoscaling_target" "jams_read" {
   min_capacity       = local.autoscaling.jams.read.min_capacity
   service_namespace  = "dynamodb"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
-  resource_id        = "table/waze_ingest_jams"
+  resource_id        = "table/${aws_dynamodb_table.this["waze_ingest_jams"].name}"
 }
 
 resource "aws_appautoscaling_policy" "jams_read" {
@@ -194,7 +216,7 @@ resource "aws_appautoscaling_target" "jams_write" {
   min_capacity       = local.autoscaling.jams.write.min_capacity
   service_namespace  = "dynamodb"
   scalable_dimension = "dynamodb:table:WriteCapacityUnits"
-  resource_id        = "table/waze_ingest_jams"
+  resource_id        = "table/${aws_dynamodb_table.this["waze_ingest_jams"].name}"
 }
 
 resource "aws_appautoscaling_policy" "jams_write" {

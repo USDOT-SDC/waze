@@ -1,13 +1,13 @@
-# === Data Lake Ingest Data ===
-resource "aws_s3_bucket" "ingest" {
-  bucket = "${local.common.s3_bucket_prefix}.waze.ingest"
+# === Data Lake ===
+resource "aws_s3_bucket" "data_lake" {
+  bucket = "${local.common.s3_bucket_prefix}.waze.data-lake"
   lifecycle {
     prevent_destroy = true
   }
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "ingest" {
-  bucket = aws_s3_bucket.ingest.bucket
+resource "aws_s3_bucket_server_side_encryption_configuration" "data_lake" {
+  bucket = aws_s3_bucket.data_lake.bucket
   rule {
     bucket_key_enabled = false
     apply_server_side_encryption_by_default {
@@ -16,15 +16,15 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "ingest" {
   }
 }
 
-resource "aws_s3_bucket_versioning" "ingest" {
-  bucket = aws_s3_bucket.ingest.id
+resource "aws_s3_bucket_versioning" "data_lake" {
+  bucket = aws_s3_bucket.data_lake.id
   versioning_configuration {
     status = "Disabled"
   }
 }
 
-resource "aws_s3_bucket_policy" "ingest" {
-  bucket = aws_s3_bucket.ingest.id
+resource "aws_s3_bucket_policy" "data_lake" {
+  bucket = aws_s3_bucket.data_lake.id
   policy = jsonencode(
     {
       "Version" : "2012-10-17",
@@ -42,8 +42,8 @@ resource "aws_s3_bucket_policy" "ingest" {
             "s3:Get*"
           ],
           "Resource" : [
-            aws_s3_bucket.ingest.arn,
-            "${aws_s3_bucket.ingest.arn}/*"
+            aws_s3_bucket.data_lake.arn,
+            "${aws_s3_bucket.data_lake.arn}/*"
           ]
         }
       ]
@@ -97,59 +97,6 @@ resource "aws_s3_bucket_policy" "raw" {
           "Resource" : [
             aws_s3_bucket.raw.arn,
             "${aws_s3_bucket.raw.arn}/*"
-          ]
-        }
-      ]
-    }
-  )
-}
-
-# === Data Lake Standardized Data ===
-resource "aws_s3_bucket" "standardized" {
-  bucket = "${local.common.s3_bucket_prefix}.waze.standardized"
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "aws_s3_bucket_server_side_encryption_configuration" "standardized" {
-  bucket = aws_s3_bucket.standardized.bucket
-  rule {
-    bucket_key_enabled = false
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
-  }
-}
-
-resource "aws_s3_bucket_versioning" "standardized" {
-  bucket = aws_s3_bucket.standardized.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-
-resource "aws_s3_bucket_policy" "standardized" {
-  bucket = aws_s3_bucket.standardized.id
-  policy = jsonencode(
-    {
-      "Version" : "2012-10-17",
-      "Statement" : [
-        {
-          "Effect" : "Allow",
-          "Principal" : {
-            "AWS" : [
-              "arn:aws:iam::${local.common.account_id_other}:role/SDC-Power-User-Role",
-              "arn:aws:iam::${local.common.account_id_other}:role/DOT-AppTechAdmin",
-            ]
-          },
-          "Action" : [
-            "s3:List*",
-            "s3:Get*"
-          ],
-          "Resource" : [
-            aws_s3_bucket.standardized.arn,
-            "${aws_s3_bucket.standardized.arn}/*"
           ]
         }
       ]

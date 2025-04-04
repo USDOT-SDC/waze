@@ -68,7 +68,7 @@ resource "aws_lambda_function" "this" {
   handler           = "lambda_function.lambda_handler"
   runtime           = local.runtime
   timeout           = 350 # normal run time is around 250 seconds
-  memory_size       = 192 # Recommendation from AWS Compute Optimizer
+  memory_size       = 240 # Recommendation from AWS Compute Optimizer
   environment {
     variables = {
       RAW_BUCKET = var.raw_bucket.bucket,

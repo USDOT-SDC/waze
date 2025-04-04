@@ -45,9 +45,13 @@ def get_endpoint(partner_id: str, unique_token: str) -> str:
 
 def get_data(endpoint: str) -> Dict[str, List]:
     """Fetches data from the Waze API."""
-    response = requests.get(endpoint)
     try:
+        response = requests.get(endpoint)
+        response.raise_for_status()  # Raises an exception for 4XX/5XX status codes
         return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Request error: {e}")
+        return {}
     except json.JSONDecodeError:
         print(f"JSON Decode Error on API call: {endpoint}")
         print(f"Response: {response.text}")
@@ -78,9 +82,6 @@ def chunk_list(data_list, chunk_size):
     """Splits a list into chunks of given size."""
     for i in range(0, len(data_list), chunk_size):
         yield data_list[i : i + chunk_size]
-
-
-import itertools
 
 
 def chunk_list(iterable, chunk_size):
@@ -129,6 +130,7 @@ def persist_data_to_ddb(data_list: list[dict], data_type: str) -> None:
                         Item={
                             "uuid_hash": item["uuid_hash"],
                             "utc_epoch": item.get("utc_epoch", 0),
+                            "utc_partition": item.get("utc_partition", 0),
                             "data": item.get("data", {}),
                         }
                     )
@@ -149,6 +151,8 @@ def lambda_handler(event: Dict, context) -> None:
     endpoint = get_endpoint(partner_id, unique_token)
     data = get_data(endpoint)
     utc_epoch = data.get("endTimeMillis", 0) // 1000  # Convert milliseconds to seconds
+    partition_size = 1 * 60 * 60  # One hour
+    utc_partition = utc_epoch // partition_size
 
     for data_type in get_types():
         print(f"Processing {state_name}: {data_type} for UTC Epoch: {utc_epoch}")
@@ -160,6 +164,7 @@ def lambda_handler(event: Dict, context) -> None:
             data_hash = get_data_hash(datum)
             data_hash["type"] = data_type
             data_hash["utc_epoch"] = utc_epoch
+            data_hash["utc_partition"] = utc_partition
             data_batch.append(data_hash)
 
         # Call persist_data_to_ddb once per data_type, not per item
