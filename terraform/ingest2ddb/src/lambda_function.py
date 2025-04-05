@@ -6,11 +6,16 @@ import json
 import hashlib
 import boto3
 import datetime
+import time
+import random
 import requests
-from botocore.exceptions import BotoCoreError, NoCredentialsError
+from botocore.exceptions import BotoCoreError, NoCredentialsError, ClientError
 from typing import Dict, List, Union
 import decimal
 import itertools
+
+MAX_RETRIES = 8
+BASE_DELAY = 0.5  # seconds
 
 
 def get_partner_id() -> str:
@@ -78,12 +83,6 @@ def convert_floats_to_decimal(data):
     return data
 
 
-def chunk_list(data_list, chunk_size):
-    """Splits a list into chunks of given size."""
-    for i in range(0, len(data_list), chunk_size):
-        yield data_list[i : i + chunk_size]
-
-
 def chunk_list(iterable, chunk_size):
     """Yield successive chunks from a list."""
     for i in range(0, len(iterable), chunk_size):
@@ -91,7 +90,6 @@ def chunk_list(iterable, chunk_size):
 
 
 def persist_data_to_ddb(data_list: list[dict], data_type: str) -> None:
-    """Persists data to DynamoDB if it's not a duplicate, using batch_get_item() and batch_writer() in chunks."""
     if not data_list:
         return
 
@@ -100,32 +98,27 @@ def persist_data_to_ddb(data_list: list[dict], data_type: str) -> None:
     table = dynamodb.Table(table_name)
     client = boto3.client("dynamodb")
 
-    # Convert float values to decimal
     data_list = [convert_floats_to_decimal(item) for item in data_list]
-
-    # Prepare batch get keys
     keys = [{"uuid_hash": {"S": item["uuid_hash"]}} for item in data_list]
 
     existing_items = set()
 
-    # Process in chunks of 100 (DynamoDB limit for batch_get_item)
+    # Check for existing items
     for key_chunk in chunk_list(keys, 100):
         try:
             response = client.batch_get_item(RequestItems={table_name: {"Keys": key_chunk}})
             for item in response.get("Responses", {}).get(table_name, []):
                 existing_items.add(item["uuid_hash"]["S"])
-        except BotoCoreError as e:
-            print(f"Error fetching existing items: {e}")
-            return
+        except (BotoCoreError, ClientError) as e:
+            print(f"Batch get failed: {e}")
+            continue
 
-    # Filter out duplicates
     new_items = [item for item in data_list if item["uuid_hash"] not in existing_items]
 
-    # Persist only new/changed items in chunks of 25 (DynamoDB limit for batch_writer)
     for item_chunk in chunk_list(new_items, 25):
-        with table.batch_writer() as batch:
-            for item in item_chunk:
-                try:
+        try:
+            with table.batch_writer() as batch:
+                for item in item_chunk:
                     batch.put_item(
                         Item={
                             "uuid_hash": item["uuid_hash"],
@@ -134,9 +127,9 @@ def persist_data_to_ddb(data_list: list[dict], data_type: str) -> None:
                             "data": item.get("data", {}),
                         }
                     )
-                    print(f"Data persisted for UUID_HASH {item['uuid_hash']} in {table_name}")
-                except BotoCoreError as e:
-                    print(f"Failed to persist UUID_HASH {item['uuid_hash']}: {e}")
+            print(f"Batch write successful for {str(len(item_chunk))} items")
+        except (BotoCoreError, ClientError) as e:
+            print(f"Batch write failed after all retries for chunk: {e}")
 
 
 def lambda_handler(event: Dict, context) -> None:
