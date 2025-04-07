@@ -16,6 +16,7 @@ import itertools
 
 MAX_RETRIES = 8
 BASE_DELAY = 0.5  # seconds
+PARTITION_SIZE = 1 * 60 * 60  # One hour
 
 
 def get_partner_id() -> str:
@@ -144,8 +145,7 @@ def lambda_handler(event: Dict, context) -> None:
     endpoint = get_endpoint(partner_id, unique_token)
     data = get_data(endpoint)
     utc_epoch = data.get("endTimeMillis", 0) // 1000  # Convert milliseconds to seconds
-    partition_size = 1 * 60 * 60  # One hour
-    utc_partition = utc_epoch // partition_size
+    utc_partition = utc_epoch // PARTITION_SIZE
 
     for data_type in get_types():
         print(f"Processing {state_name}: {data_type} for UTC Epoch: {utc_epoch}")
