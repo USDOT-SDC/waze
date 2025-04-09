@@ -1,5 +1,4 @@
 import sys
-
 sys.path.append("./site-packages")
 import os
 import json
