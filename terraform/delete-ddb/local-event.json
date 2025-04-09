@@ -1,0 +1,503 @@
+{
+    "Records":[
+       {
+          "messageId":"b266f899-8b26-4c0f-8674-93519bffdd46",
+          "receiptHandle":"AQEBkMrmXfgTcnTkHbm242d5C6isnEqw5UxpcD4a+zVKoAheyqPbTlIrxsbuebaM0PBKtPrlXawEyg9twHbEUcNOf9DaFKtTaxOp9JjWDRg6UdnZ1mBtrm/fOJ4AKAITydaCgjyReBmO+5y0Vm95EI7MlpE7Uem1m7m2bAElT1LDldpoFGtNEyNcisNB2W8yaR3X5uJJlQUbKYxa6UfpgMvmsjL/5vvB3lK9XZhCwokTPf706FVNznqzq1Gy2gadI6n+N3PzQpgNyEutSZua/0K4tMODn6tdQmQM2r47L1RVTexJSQrxDB0E1EDGUdufzJDt18TTZujO+2HY/o0fPPcpWtdt0xfAMsuvewueqRSBkcvvMZe7L0+8Si3uP4Mc/76j0qXU6F3qJamoVZrvNkCTsA==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1118735814_9c6b3b3bfaabbc76dce273e185085df122d20b75da294b189e2908187565afef\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583056",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583057"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"cf0d02266a8b204b925864a662e4700c",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"5b1ac131-2798-4f18-aa18-ea0de2039dab",
+          "receiptHandle":"AQEB20/2sZp4K8ffTIFERGcaoWwoa/FZBafRmvIQztt1SzzRQ6NXpSi6Eu+jEb1uyIWYh9yR5qcH+roG8aGw7N7f4UjINqht4sDrKz3sZKRH9iuiSAs+woY0SjChN6O5Jw9WADxllkIcAgWq56zvwENZva1hFjRPDmB4QMypOKt6LGAVDs+xzHdDc0suI+0+7HWeoH/jghMqL1yXqw1cbUIjn+vGHwZpTFr3/QNwQlxecR9sIMcDU7ENX3gnkdXmqexOY3G8hm1Vuk5BM74SUrdLzt9795ZjQMUKUPa5YbckDxAK+EYEgWhKvhKuBzeJ5/9IzUt5AADmXLT63uxNGmddyXyXbRSUlbz8lDvVLZFwJiXTdi6/KMy7yBVTZLlxVZaddO3MEEj2cYvFU15OFRrGNg==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"3a019b20-6521-41ae-b33d-e209cf8b38eb_0cc277379ec919fb755d3953cbaab95ce582d1a8611da01380fa802070a655e2\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583067",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583068"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"5c84350067fdfa4caef7641e74d16e40",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"2baaf049-e890-4e0f-bfb8-b7b7948a229b",
+          "receiptHandle":"AQEBrshQLjRXq/cR1jN9YrVrB60BH31rMmr8djIkpc/4vEy2GHBqSCiZhJWTYEv7VwYn3ZFXNb9NZ8m96Ky4AINFe844wq3mrrGrfw+JOMtuZWXUgp0R3uen0WFBKgOpeqIuQ0yG/koNtt9WXkH9HAKODAmADIZEeNGBn7E6qU112QjVSmwhjeCMS1vh9A6QMve5C701FpVPqFBXHJpC6OPokltY9MSAy5RZc4WwJKGaSdsoxpCNrg7/vVdXB7JYQxdIJq6M/NzGivIS5P7i03+UDrfAWW+0NXVri5D0opnNMqfXeIlqXg9x4SHE8bT82Bcu7keUYjeeoMLN6JXVA+8fJdEYv1TEbmGKsO2fyBg3ylemfBGy5JD7J0vu2X7VKFhu+KHPkmBbzFLN1IJ7FAbSkw==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1119738092_771515b2c762df4429e4e6ac08a517e28bb4eb49d6dc53424a8e98d4a6077e65\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583091",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583092"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"e3070062e318dedf9d56f18874e0da51",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"ef9db543-da79-4737-b764-bdf58ae2dc5c",
+          "receiptHandle":"AQEBNqPAJq3PgQBkLdrL3Tu4gIlWSYW6ZI0i6Xgb+aDAOSunFOgIo2Rmij/knT2VKWnWw019oEU2/fdUgsdlR8RySSfdu94eyY46A4butjtXsAUHNbV2ILubwAxqf/LtcKop/JYINVtpD5VOZwT23vnWt3w9MR33Ejm3gqJFX7HAIqdbZbHQGYlcH+RW9ag46pvsanRTlU3BRvCiO/3T6cZwd6eDn+ja99NzhgG+mleLNaRWuHvHdh6ZWvV5BySLKoHf75t9dFYLseM20HsqcJtORpjMTymYgMKnhgV9cg1H6ALKwPaHb+rM5/q9czaKvYe0hNQojEnJMsHoO0wtjPOI0ayhBEVpcQ0Mq6g/RMBcQoyUkhs1wddsQiCPh/Q7QB+qFtSK8JNHkZ4gw2wj2CzamA==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"c1db5fd3-e673-42e8-b3be-b98517a07945_62828afe93d61574523e61ef83fc309c80254ef7c7ea4022327f21f0e920427e\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583095",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583096"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"5a989fdcaf674e5fd38907e1be82bef4",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"88d85984-1354-41b0-8bb2-5f922af2ed45",
+          "receiptHandle":"AQEBi8s7m9rNjSYWelrLhOseVL3P5ZOJVL2Pb7hpeg+YWgh4MqjeyOgSt5sfC5RPGGx3tXIDWLzXW4wJsBPO//XE9PVVRGGQKrwjziclLLPSkKerIehqwyTHV+oxzLx35q3hUQgQ8aNHtBqQnZDQQ8sB648pxXzWI8rmBp+W0i6UBJ4AWcHbkIeurhHgSJ8keip3ga0SgK6zmTXosJJFQ3i/B1Fvqiprk55RjvRiIjNl53INKsCHxS/5vYfWCp+q3vpoRahEWqUoYDYyenpBW1QIj3p1nkiRXPiNpJuAhIxU+3ZQdVo3SqL9Pllf1PGOVheaDx+Hi5ssUAToARZEXdsphPfsQ2AJkUzQUI+aEH+IfVnBuwiJOHhBrP5RHZTPDSMXlI6M/8NO4vMKneIghLFujg==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1120942320_7bf2f586d3607dbcc852933b6825fc9a78a50375576c4f32833fddd1322882cf\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583110",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583111"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"598228778ac90bf28f57b0143d57a867",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"ccc480d4-fb03-4eb1-8e25-b151bb3f7c51",
+          "receiptHandle":"AQEBcCIlxX81ymAOWBHbVP1peoXZCPhC0di0Qg67LMJ3jlAYFIa+1jF6ZcKZZ8o0azr/BlOnr914c4g/7RSACKDF+95n79EpL82RJ45dFaBYN/WYGp4T8L/NwM8ENVITIQkUaNsyFmLJT/NMOj9RmDoP2OY3E8KiKx/6K3Bmb+BVxM+ITBJV/YxNEsw4OV9x1BYlgRibMfJNS9LO1BaHqYlYRedwrD01b84E2aI0b/8x2BsUTtgfL0z2mjZCyne1Y0mrdeN51t1qZxv1sdJ65DOyRCxYxZL7OmdnR7V5pGZy55UYQLrv/Jjlsc1gFyKeCGtBSeucvCziDbdYxnzGg/k6qGycOoiWsM1NPuYzsxIm3X3oq6RNW5a9KLEkCHeWVTyakVa3dWKj8Zr/XsZh7xGEqQ==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"1fe5e0bb-cce3-42bd-9a04-c19e7824b9b3_691ece98d4ba9b6ac0d2944da14b31ac89e50111de006ded52f82f85ec850f04\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583114",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583115"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"594cba06e80689ab9fe6317f228c2cba",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"dc25d559-f8ea-4c5b-a82b-3b531b17cac8",
+          "receiptHandle":"AQEBahfzGnyb9igEh0ullP9H1s88CHZHtTV2OmBGMuBM1/Vp4TH5L/92PlG7GsICyFFzZK+UkEJYBXqGEy3VDzvyVhnjJQgKNo6T45AwUreb6alqkAxR/ZutXulg71XjN4CUNHJMY3P0LcG1HEHmDVBTYCSIJC97KOrb/ryMSr8IdwCnn9WO19itcPEAEuwt5Wy9PHjCeZJ4UfS42CRkaO9L0H/rf0l5/7FoZX/igHqfuHaTSxRQPgBm3hHpL0UOctj/M4pMHZ0RSw8CuGBLvXH/kuUivcsf9Rh1ht0qz0xfamwqThitnjq56XW/OXpj1FzTWit/hKKBl9/hDRRTZM8/MYAva4MOYE/fXRkzT4XQusUSdTKXiBDvZgpG9fHwyXNIX/wPyd53araAaObe0qmWIg==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1121952594_884dd9d8598cb25450f6b3fb689302b0e532aa2233dc556255697d5353524e0a\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583149",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583151"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"f75d0c1712b73cc956aee9a7fb5b5e32",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"cab864e3-a074-4621-a3e8-7764f7bf09c1",
+          "receiptHandle":"AQEB5MpyKNvE0CyeapVfuN5DNORlqyTKztl36T7ArFAsOA9bojt0ztJplm9oXBh+4yPKxZJ5X3FXknLkzauTDomizGzDV9N3SEHVdwuxoNPeMICHwPOyOIR33IDpX7/dBWPaBF7+VOmUTDUXT9OOCHGTQOFurSY3yAlOeOcOpLy0FiUK40DCuExXgORyw78ZX5XuLu62aIwitO11qbMdps1ip8KKx90hulTxJE+1aB6oq5ljxZNfKEIXCYREN4UaiUCDhOs+TKuELY2ZJiPxJR9h3ASDEMeJOTlx5w8GASWFIGncZg2DOfWH01drlc9HB/VgGgopX71yU2QPrvoXMDhQ86xlH+BbGd+9YOTVI2cVfntM4fVy424+9covfvJa7yB8dsLYMMMt9Mpw4nU6f8343w==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1122744664_d3bd8b8760c44c6074f7718b991410cccd3c55c5be74c65752b9cba6ece958d0\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583189",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583190"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"2a452c6dabbfa1189d1220c9034fd240",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"a4b0eaf6-2417-4cca-b10f-f65be88c94cf",
+          "receiptHandle":"AQEBKkKVk5Um1ODFQeBscVCzwXfJXm/rR+SHwuKiQT2bDuaIFeeEWHLGanhkC7haVUAAexuL5G/MeKdIa6TiQ9kF/caaiPgLp9tscDh/1Pq1OTZ3Y+cehixLYap0+v4vz8WGYNU/JvuMYPLJJ5IbbPJ0bXn93P7FMOxDH5/bGt/ukAlgiaXWDPFfb2giayjnD/6YfcbbOftPCQXFBh2eY4r4K5aoY+XOulMfdHingyb+QkN2v0fIK7mPIfR+VR/nUG4TdAkped8skx4P4crdLF8vZVxFuxaiNi3bRnlZRZFNgPh0GUgpw1zYWen1JYiJYM13DZvowiAdveNzHTyjpnBvWnTaVpncEU2F14U2RmLk9U+8PmK0k8ezbKdUwI7K9O+rGaJo2krDaXkHP1CrQl9j5Q==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"a0129b11-32d5-4fd2-8266-52f3d339c910_0ae8c8478866f7dd919003cb03fedf3bf9ab31fc5df7e0f52d6aaa2a70c96a5f\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583212",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583213"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"d61bd8d62280b35cf6df8c64984672c1",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"0c7ddbb0-b8e3-427b-85bc-cb4e50ce9b7d",
+          "receiptHandle":"AQEBX6bN85OXe6diQpOMkhD4RJ70OsEVVzy95gPj3S+pTYxPdiUMye1OQa9TRPW/vXtW7WPNwOwyuDppO250npAdqjBAEBCA0peSj5oXIW7nDyYZcUTJXe+1ScS14X3AphUsPTiwDoOqbVV6bRrSIqjODYaUHJHt+azJaxGLl5p6W7LYy1U7iYtakyH0BTFPhxzsv/javqW39U3NowB2LImjloCC3XGWRh/HUfDDonqyQZNLrXaaNlXlhc+NA3c8sUE46O0BH55AZsUb9rXaSDhKvpZ//l7qyUAiYs7OEvGr3jwZ6VYVUS83+VJEVjp5CZERov+SyFV37lM9Y9qZ8+W1zHFpUVHgAIHAGyeGxCGHzz16AY0cOmT3VyES4Cbv65bQar8PVrzV6EulX86L2rUQfA==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"136d8055-729c-4566-b3cb-f222e6e27d6a_5600a4e7341eca3b1a6dbce0bc32be586783b885430666e75276dad1c87daef1\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583227",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583228"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"a91312452126ac892b6912961fd35385",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"bc7fad47-7cf6-4128-83d6-8fa6adb2c5fe",
+          "receiptHandle":"AQEB4p96Fv0gdq6RTZhPpYonyH2M4E8mcGDs1adSr4e3ouyLYRkHpDe3djJRcpe9LMO0d5jxsS055WBW9ngtt3GETfkpdGvOwvbdMFuv47EzOQNjfUCsy6UfnvIs9adlFyNvifkAQ7+0OWGu6CXoObUFKUxlPQqgDBJ49QlPLMuC/IwygMsJz8LzszwSqbvbBKzHXjD448PW/Ju6bfm+B/MYyvFYSO5g2JFMIQdRlehiYrlCevTjJHmJY2fmibgFElXWqyEKe6DT2LGxvXENSCJ8n9cAMKoczPr5f9WpFgHEOlGaVYd/hFDqbRcsLWWIkd0unDxPPG/akiHUa5B1RWAYyFtda+x0aYVMRKUScN+zkzTW4XgIx2mrb1Ax3hy96HBk9ONGT9syL6ecluI0n+Sd9w==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1122152264_bf9dd1ad3fd74656a37433e4b5189a8a08d72972ef26804e12a742c6276259fb\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583248",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583249"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"d87eb253bee9e040cbfdc3fc0a7cf5fc",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"19eef2d2-6a50-4b8d-8ce1-94eec874b923",
+          "receiptHandle":"AQEBS2GFwMC6oHburKSO1Te6HjK4NAuhaAaA499JGqlUkA6tY4I9Zy29paZvdsiyYVOabzSn1a/NLO3dBugRN8MiVvB8WqzgS0aft7r3MGHKIfx8gf+RqUSFpakTXRnroJtf3U5E307cPUbb8wUusVhTOisJ9nWFLLhH4D9uTDTbDd4E+l5/9+LPjc2AEh5EVsGyI1wx5AsZKd5Wm+jDsGlyGWfrq5RTqzlZBqlzpdte4BBMu1uRZy6RoyK6MselSrMZibhpWm6Mx1kZRxeZfrRSPG2xq9XRYeQR8lkCxBKMtoIiULeURag9n5X/geoOfIhnWOmvOdeXhhxFWRQGYMUF1ZWH9pXCq4/5dvo8pjHFvZhmr73aS7Cd+lNKfH3CG92aasF7s/LKtj1dzWBJble56A==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"6fbb0e6b-a8e7-4178-a45e-b61e7d88059a_41e018e821564b03d61726f97e9b278f0682de9e72cb63566a8d9e724cebedc4\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583306",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583307"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"93f96b58be7a2f398f9b456540f45e75",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"6e44cc22-ff80-405d-8900-9694dc08915c",
+          "receiptHandle":"AQEB8C0izyJFJdApnb4Me1Q/S/sS24PhNgB/3g/4lYio20pgct9u2mpRx33ClcYLcHESOJRBOpUJDjtJoLYWcjXIBiYmhOHjmLv3aQMKUTBMFjjnqYEukfFDwEwWcG93HFfA1z5i6hTD3UYsJ/crdUPAFyiULRulNf/bXtz5SyxQe/TGdeK8qjIljRvdf/OWxMH0vjbQtTrsyFj9+/YUn08iDN75glexvncOVm/dA4QL7zs7v8stMWN40ryRrrzj7MlLc/2ycB6KIbg725xK4vQK0LFKV4gjOX8y87fV7EIUymEJQQYnDNrpFveh7EEYVF5wB6G5+I+9u7KsHU6LxLphT5NsGCr4kts3QoBcNKgB7nPpbve5gnHmV29xSLvRLHQyNWxz4zjZRIE8N7hlRLxkYQ==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"163c8a45-0950-476a-83aa-fdc00851608e_497d2fe6b31c36f1c2f17a8bc19eda445d2de137a4eadefb81b75c99859a2f52\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583317",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583318"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"4aa76b4c1fab0d599f8f67fea13a2527",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"b40261e1-bd55-4454-8649-aee463f59ac1",
+          "receiptHandle":"AQEB5RWbbJwihsBQYUX5xlL/v1JGl9ruKqyMRKFfJtZPGNxu+AnPKfwsf6MVxs1sVeNApWBLFWGVsC+v0lEJGhFjG2+PI1CnXU+wamo2UCwdD1m3wNk7rIpvR0bipAY2zOQitKX/2zHzqmfm3Tak2z6zF98KTdMc9aP3Z2fOcbfkoRR/FDZ6s7KOFBTRK1Td5BLD/xH6q+sBgKOFELRjb4TQ9q2Van6JAf/JyRud7i2WAe3QRDrcXges7Umo2dFPFO7+o5Meb6tWdOwITQTX8g7LB43l/nfGBMKjSTZk6Uk5qWgmuikRhp54VX03teQZmUvBfdK8Y7zPF+nC6yds6mm1Oj80sLtD2Sx4R50vDZLAtW/FRW+xEklUnb9/yHeqw79C7iNnLAEQd4XDpPr62tfW2Q==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"7ad5a408-8c14-4680-8b4d-845204f982ed_a5380356644325cd1a4e10e6ba0aa1a26f8fa8d9bde0d4ef2ae8400508f96ab8\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583346",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583347"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"a8e69f9e1cc4eb96f3e9466cdf0c7d00",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"d9ccb435-92f0-47a4-a130-cc8d80f479d5",
+          "receiptHandle":"AQEB8UiF3XyOeA913gACmI/tioy6CiUivvPdpYFyJoRPfCuFsZR44/1vG7ff2I5GRH8uFWstf/mCZWpr0EV1EF9TGK9U1RpSm/qwvTpI5hBSHIYuq/7jXZ/McHenDTG4HGfszarKlaJT1fjMNpPf/bMxR5sD2cW1VSTiukoo+BPqnXM95xtuFkYMsSEGedHxeuIAfPWhYKGraUeLqAzVkYjq6iDK5Hq9OEDW6srznS6MHoqHBM7iE34eLMqaUyGSI04pBQsudgsQOB5wDCm8EzXBaOdMydcO5qUbJecTELOjGbP5r++1p5G/4EskqScJ6LtjM6YG9YfzN+a/F4HU1EVi7+hjAW9UHVg3ES9g9XRanBXX4OQI0AkaBZsrFdoUZ6B8Y2f5EQMsxYoONiZfYgpkeQ==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"4e53f8ed-f72f-45a5-984c-86c3e6a54243_9fe607bb2e51a1351f337d32f232d0e1261a7d45c3956f6f1d95b17e734d60d7\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "SentTimestamp":"1744127583359",
+             "SenderId":"AROAXLHDN5KBWDSJLQ25B:36e51afa-ad00-4166-99e3-76cd190ac8a4",
+             "ApproximateFirstReceiveTimestamp":"1744127583360"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"19f1c224ac7a20ef7ce1ccf5eaffb301",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"9c4e1656-7670-4dc6-a7b9-59bcbeacd467",
+          "receiptHandle":"AQEBANMBRJ9+Ko8ejGhebgE2lNvfy0jK1DDJCD+og2OrNUv7GyVJ7tFfsDURX/6mk5lJ/opGfOU5gFwLFRMqfCOUn4zC9/6KColiOnhI0g0tSeOP5coG030rP004mbxfQq7DL6GwLj+Mgxh5/BcIVw9yXObgdtupHnKpbGwVZXBHYwIXNPoB+kYJ8MuAb/RV6mZSXeFd5L+LHB8YOMf7Bd5dR660sqKv0wlOmtNCes220a5Hii3q4Ak4fwoCOL9rvQ3BuJVJm1fvw6ICJ9NsPc0JKtdbNTx7Rwr0H4Vf3wvrAsZ7aUv4bsowgM4bxgpUbtAG4FXb0o9YhJjJbJlJv9X5LUogsiwroaG5RtoFS2q9ciSid6VB8K16OicBSewAePSEfOvbq0icfE8PLNekE0Bt2w==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"0188f227-7bc4-4a63-a12b-5b4a848edafd_4ea900951d592dfcf1914eb1fd2c2fb7710563708cf25ac499b78231a7aa14a9\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583360",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583360"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"07f40daf1973a13de46d830d4cbb1664",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"38ad6e1d-1555-4be1-af60-9f8db972f311",
+          "receiptHandle":"AQEBVSSZ6VdvTgAyVIdeICV8tTtw6MGXEjjBMuPTt4O5sWsV0K3I25AunLAB8NFp59m3NlcPcPntowJqCQAskEJtM9nKrhT+XBO6cKEC8W1j5TlbeMRhyL8T33QNPuaea3S4Q1YUtiTmyEGxUYdavJLCdxopcxcE47zx8mGjPSjBp9E9j5V9eRRC4Fwms4qjRbon40GJFZNLFtY20F2usogu3Oj1LFJVsWpENmgThD+38H9dLaBdlxN4JKkEyeqSM5EOMcUPduuvd7NRpXE17aXKjRW/UUJYw6OwsvXAlUUPEKwSwGaRpAS8QzkjsJl9fPgYzXVhkTAeCRzljFLt9+wO2jqY7+XfkY+PiMb10+++/ElycAtEjJ8dsMvLHFEGWui4eo6qZkg3qWRsyjZM6bRXvw==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1122316676_90099f007c131fa3f963b92773d6a488b22e731742e43d63dcf5f9b8af84238f\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583404",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583406"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"acda403c9cbeaae310754c0baa799051",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"d19ac0c2-ce0d-4b87-b8bc-e02a9b83e74a",
+          "receiptHandle":"AQEB0XcBNM7/P/4qB9YyOZiAYLbVcZr6AYlsEJFMi1O1HH7xcTzh4qVs22RVqfZSh6qe/PhazsrfotJNUKOguGkQo+4jzbZpbwNUfNeZQ1MiM7TxFjh1AQ1Jzjv5peuIPJ63IJj4cDaOnHAZHRauj0whGakYa5ka6B66hzVDBx2aYkfoKAg4ubDDXA5RLcwdWYA6A8FXcBRUlluvYaOgHdcw0Fh/0iLLGX90VDbHvESMqYhQMLdnUpmZebZlG2N7Gr3Hw3Xy0E9GyVWYlkN5Exe4jrFp0S1mgtQ3yOSmva2RJyAEtaE28Q+bDmXR6lROOu+UbHBSlRP/rZsuYeIzDD2yVVV5k+WqHyUg8jeLpE1oMxCukuCBDy/aG1Ls4/vM/9BA6jsYsws73CamyfLXZp/Jfg==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1122547914_c4a3b5b629cc3134a9e70e7fa7470191b1c7e2040286ab4689fe5eb41f78af99\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583393",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583394"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"92237826cd3fa983dbb5edc32cc3b44c",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"bb600628-a6a7-4210-968d-c219e5901962",
+          "receiptHandle":"AQEBI8/csiNUEJkRY+dgh2fRGM0HVBfqrykHGDcP76i1rrj+DNLUri+lQnjXnOurH0vsNACBbyuH7RBikhzJC4n5RDyLXYCrMa0xqsusyucioFCvJLBHM0aVx8P0yAKD8mdJuJzthr+a2lfoAkobcXd3alE2aPIZtMRLueSJRxGnoxr8hAgKpEmP/G9xnUzUoOO2HN12WYkzhuBYQS1RhN7hbA9Jc79B7E9n2eVzTexD1yyRSbY7hQStDcEMVT5ZLbciLUbHddt4W4am6pzK1W5GaAA7hMJyiIqiWBzdPk+mV4IUs56VIFlTb9sxXei/0BNFnYi6dvBJnJb6QRw6gyuZNW8pxA1j17PhoOlfiJP0nwDKzHUj2i3QoqCtrzhpQn3PawD9xTdnDCCnDgkEZwmBlg==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1122109272_05a93dd2149e66836133996b2c8758429f7522e8104bc05cf2058ae4613b740e\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583411",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583412"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"76b1d6a79b8966486bf300e28f46261f",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"998c2305-6481-40ae-ba82-e63e0b79bb11",
+          "receiptHandle":"AQEBM+PS2lv/v0Bh87pif8fbj85KpIBgI0RKRaxL4rK0S++HUJc0e6jKVWqUwmZhGlc3rf9XSxviCld1SktEoFyyvjg8bz8bydAx/hU+Lh/J9N06HFj1Z3uhJgeA+/AISOiaxz+B3YEOHDcK34nA14uyKQCAJ59ZYKxWRbCAwG5FgtsH1gQGMvcGE5+VKV9HRv7fAsxtqRfH4zTRmQQchnQa521W+N68GuXizQF8Ft2iBw6ST6FO479WNAVkYvmRERb8aG8mrXzhGSKJJHVXp4Ne/bYJOewFalNI1EBXbrrh8iKYG8bM1/bVw2bXC+N70hbnzQnRN9RUsCWPxMFNT3mm3I7BbWhJqWIWvJG1jv8bO2RlDc3JlFkW/XF5x8+YOYv19r5l+TnZ/yV2r/Id8bZHTg==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1123147868_49907d352f9e151515a401550c5829f4feb2e1a927f10ce2bcef0f054b81f095\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583417",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583418"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"0cb9e0b027d39f0134002e27706488e0",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"16b43afa-447a-4cd6-bef4-6719b32a3ffc",
+          "receiptHandle":"AQEBhPkBTR2AkGqtgozzk5pOpadG2dasSHqHpNVQyNysICKZ/84vAeKgznpLe9uD9w+/6pRMoqA3jH5qiPiLz3zJbNAc+1vODEJRRGaaBOIMDX0w+njIRX2QWAjtSsdykzTAL9jqPPSGu1xs7yUtx0wihU3is+6kZoycnhyD/8WcZJhGGnFP3uaQYvZ9PxhpgBkoRo+9LV2BctSY2RUhy/lmz/tVoAQLkfZ3QQ76B1xB7hGr3bHfiYVJxeSJM00DqRX8XbIYq6NdgtUGINvXzTD/yIeAm9m8RrTMZiA078clRk8P7if+8qC8lObyrrWHubtVhs/X9vzC+VaNFTOdq+SXVkWWB+p8jr/b1GZuN6uHbNC8iL+PkDM6SRj9FHjdJcv/1v3XZ7Pk05EFxfl6p0b8Kg==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1122367772_c7445200841ecdfcd96a89021deb0f76d9a36984016c613580391affc6c32d45\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583429",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583430"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"d927ea1afad7d0d38982cbb2e11c9d32",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"19151784-7a06-47af-bbe7-9420992f3e45",
+          "receiptHandle":"AQEB9uCsmjooBj2FxL6/lSq9gCy66HiKG0FXS594fb3JQOiHjCQosibvI4FWgUFosrtbaLlNBNGB0Eker6SnQ1Mfp9mnsBN/0eSm4T+19BMfROfbO5IO7o7jzDiuQFNjULccHuLtvIxv4rRlOZyWhjhnKovA1rnGfIMoGDPtNjfd7su7rpfKKrw6gJy167/eVZnenNTdL79qcOwKfnCzNxE1p+InlAF44etEq9eVjwpt1Zbn9WpKOHAqSi86g/SxSntgaADpVFDPnxeSjD6Xjq9cW8hDKjdpLgDcNTjVw36tsjkO/eSbD/EtUQXVGEnoSYLKJVRsWRryKWBZrrBuvYQ/9y3MGPkzbaqB31O9bz3aM40TdQQeJHjPMGhq0VWphSCKdi5V8hL54VmMZUzKSpikWA==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1122241334_f1c1cc1237c63d4d5c433dd3f97b0a30935ffa91d6b301d3b2f44b562911aca1\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583443",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583444"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"b48c12ca25400bdd06c0bde2d64a7ab3",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"a8e59f5b-d753-4427-b262-506a07627804",
+          "receiptHandle":"AQEBKd8QAnWuPvvkgUoyDkyA3/QCx0M9g3xxPhowepehBLOX8A+4WDAFRJvSMli53avXBPnf8pX8hQcsix3zlXTHEDVt8z3hkb/6PKehEhkrMMAWMjaHr5YQ+OA2HpcakAqrPxTozWykzKqV0R8+VspGG6U4hI1RsZD65r4YSZuF+3mYckHJfFl1ujbq487q1LLZPIt4arauWF5/CiDWvAirf7MoeQqPkv9OsjS1CMbcUD/9iSIKjfSADLoZsFmzYSuKlfnbrzwI0QIWNNqSgNjnVVUlqh/mbrQO39UCSnZbTAQnBEHDC1mBbyNXCXZxc6Skv4LJImNtyxwKuhVUSJmucDkTpjQsf4ncxm6ur2eyKqdUtoRPtizH1ZBpaRg7hBHnawMrQ/JiFaBRUb9FxHp2Xg==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1122771024_d0bc448f8e969b3741653cbf43b9d875f86196f134f8188c92b263c9ee99f166\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583449",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583451"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"aa4522f32b387a1a3ff18e823584b086",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"96ca83c3-c0ab-4301-ac77-1f1b6141c459",
+          "receiptHandle":"AQEBgVaLuoCejwjlRLgWInz3MpiJQJUm+dKOB+65xvRzdhPOEbL3tOqEI+W/pOX5UUBt2uCxndQLvDtF/h4u4ktFDDFFiefn84+1Iw1IuP8e6EQMthPm0/kGZ7Y79ueD4/dpOe5aSyoOERs19sovL52m8+5ww7wAIYgS0skDDGxtmscAs4YanQ/IR1i+ldfLqfdX7bwDfZyrFotBbeZZUewT7vHTP6PiiswATRy0QzMNKPfypPH6spNHjYp2UaeygZ4UZ1Cx1CYfjM4Cf7VWcDFApRqYbuoiaPPoqWWfAQIWN2Ffj0I+hpsGT/S5VPrfNqU/2K6hwCObkXg88QbvU2rHuvRcDSeWUWnIaQ2ZoAWkI5b+VjdorqPnLQE2OrS1GpmTCvp+3Q5XM1yUCXbmtNq43g==",
+          "body":"{\"table_name\": \"waze_ingest_alerts\", \"key_field\": \"uuid_hash\", \"key_value\": \"bc598b34-f38d-4b76-9527-624e4f7d35ca_8513a2be731e0e7a4cd18ea0017c98a766d4c6c14ee893464ff5895633f34654\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f5448c-1a0aac2a7f3fb79574461324;Parent=6a0133c11a9959e3;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583466",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583467"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"23d2a17fa5e565ae18767ea475fb9fd1",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       },
+       {
+          "messageId":"b1f7f95d-6db1-4646-b82e-df0f625ae299",
+          "receiptHandle":"AQEBzxBucCRunC5tOqKSpLIg/DQ5Wje1AWcC9wENWUGRtFKrAGpJzQ0mAFTK48ussKLPqUi/Ed12ym1GTBYV6P/TTW8qPxUZ3CjC/oxX6B8yGcG2yEjV1NpSXZSqc8vRSnOypG5oNVkAdkSL4VysX4YtREUWVEszMMRFicdztjf5FQOqsoX5JSn8Qb+EcGNo9MRWfmSUCwqcCg83uWZksVgvjD9QUOYTFWjq/H05Xe4nkn2/nQ35SHpExAS1P19BbGz2kz0PD2JaIq2oGr+MAErQlk1wjNMIT1sXUnsDGsQ9mImC753J2+wWwn91Ddi1+x5lvzuhg6u3zSk0W13326ViQnxmPqCYwDednfr4/Qq9lz7ETkHjWpcv/fGF9+GEqttHe6c3QwCDrcpMwPCJ+Dg7IQ==",
+          "body":"{\"table_name\": \"waze_ingest_irregularities\", \"key_field\": \"uuid_hash\", \"key_value\": \"1116801008_41e5fa19b2aaaf9e39bcb23dcbca130db4db3f6c9ea838c52b11e18bea3c73d9\"}",
+          "attributes":{
+             "ApproximateReceiveCount":"1",
+             "AWSTraceHeader":"Root=1-67f544ad-261c0d9d241831dc3a1ee9cc;Parent=6cad35171d226d31;Sampled=0;Lineage=1:1192de1b:0",
+             "SentTimestamp":"1744127583473",
+             "SenderId":"AROAXLHDN5KBUU27WWG4K:waze_persist2s3",
+             "ApproximateFirstReceiveTimestamp":"1744127583474"
+          },
+          "messageAttributes":{
+             
+          },
+          "md5OfMessageAttributes":"None",
+          "md5OfBody":"35975b8adb6b251f3ec4d97f1e22d2b1",
+          "eventSource":"aws:sqs",
+          "eventSourceARN":"arn:aws:sqs:us-east-1:505135622787:waze-ddb-deletion-queue",
+          "awsRegion":"us-east-1"
+       }
+    ]
+ }
