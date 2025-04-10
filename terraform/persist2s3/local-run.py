@@ -5,6 +5,8 @@ import time
 import os
 import uuid
 from src.lambda_function import lambda_handler
+from src.lambda_function import get_items_from_ddb
+from src.lambda_function import get_partitions
 
 
 class MockContext:
@@ -43,6 +45,8 @@ if __name__ == "__main__":
 
     # Invoke the Lambda function
     response = lambda_handler(event, context)
+    # response = get_items_from_ddb(utc_partition=484388, data_type="alerts")
+    # response = get_partitions(240, 72, 3600)
 
     # End timing execution
     end_time = time.time()

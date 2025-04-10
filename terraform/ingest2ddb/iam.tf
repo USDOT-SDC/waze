@@ -31,8 +31,8 @@ resource "aws_iam_role_policy" "this_allow_logs" {
         Resource = aws_cloudwatch_log_group.this.arn
       },
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ]
@@ -51,8 +51,8 @@ resource "aws_iam_role_policy" "this_allow_put_ddb" {
     Version = "2012-10-17"
     Statement = [
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "dynamodb:PutItem",
           "dynamodb:GetItem",
           "dynamodb:UpdateItem",
@@ -60,13 +60,15 @@ resource "aws_iam_role_policy" "this_allow_put_ddb" {
           "dynamodb:BatchGetItem",
           "dynamodb:BatchWriteItem"
         ]
-        Resource = [for table in aws_dynamodb_table.this : table.arn]
+        Resource = [
+          var.ddb_table.alerts.arn,
+          var.ddb_table.irregularities.arn,
+          var.ddb_table.jams.arn,
+        ]
       }
     ]
   })
 }
-
-
 
 resource "aws_iam_role_policies_exclusive" "this" {
   role_name = aws_iam_role.this.name

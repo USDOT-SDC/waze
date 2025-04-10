@@ -2,7 +2,7 @@ locals {
   runtime_name    = "python"
   runtime_version = "3.13"
   runtime         = "${local.runtime_name}${local.runtime_version}"
-  src_path        = "${var.module_slug}\\src"
+  src_path        = "${path.module}\\src"
   packages_path   = "${local.src_path}\\site-packages"
   last_rotation   = var.common.time.rotating.hours.12
   mark_path       = "${local.packages_path}\\.mark"
@@ -38,7 +38,6 @@ data "archive_file" "this" {
   excludes = setunion(
     fileset("${path.module}/src/", ".venv/**/*"),
     fileset("${path.module}/src/", "**/__pycache__/**/*"),
-    fileset("${path.module}/src/", "**/*.dist-info/**/*"),
     fileset("${path.module}/src/", "**/.mark"),
   )
   depends_on = [terraform_data.pip_install]
@@ -59,53 +58,22 @@ resource "aws_s3_object" "deployment_package" {
 
 resource "aws_lambda_function" "this" {
   function_name = "${var.common.app_slug}_${var.module_slug}"
-  # filename         = data.archive_file.this.output_path
-  # source_code_hash = data.archive_file.this.output_base64sha256
   s3_bucket         = aws_s3_object.deployment_package.bucket
   s3_key            = aws_s3_object.deployment_package.key
   s3_object_version = aws_s3_object.deployment_package.version_id
   role              = aws_iam_role.this.arn
   handler           = "lambda_function.lambda_handler"
   runtime           = local.runtime
-  timeout           = 350 # normal run time is around 250 seconds
-  memory_size       = 288 # Recommendation from AWS Compute Optimizer
-  environment {
-    variables = {
-      RAW_BUCKET = var.raw_bucket.bucket,
-      PARTNER_ID = var.partner_id,
-    }
-  }
-  # depends_on = [data.archive_file.this]
+  timeout           = 900
+  memory_size       = 5120
   depends_on = [aws_s3_object.deployment_package]
   tags       = local.common_tags
 }
 
 resource "aws_lambda_permission" "this" {
-  statement_id  = "AllowExecutionFromCloudWatch"
+  statement_id  = "AllowExecutionFromS3"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.this.function_name
-  principal     = "events.amazonaws.com"
-  source_arn    = aws_cloudwatch_event_rule.this.arn
-}
-
-resource "aws_cloudwatch_event_rule" "this" {
-  name                = "${var.common.app_slug}_${var.module_slug}"
-  description         = "Triggers the ingest Lambda"
-  schedule_expression = "cron(0/2 * * * ? *)"
-  # at minute 0/every 5 minutes, every hour, day of the month, month, day of the week and year
-  # (Min Hr DoM M DoW Y)
-  # You can't use * in both the Day-of-month and Day-of-week fields. 
-  # If you use it in one, you must use ? in the other.
-}
-
-resource "aws_cloudwatch_event_target" "this" {
-  rule      = aws_cloudwatch_event_rule.this.name
-  target_id = "InvokeLambda"
-  arn       = aws_lambda_function.this.arn
-}
-
-resource "aws_cloudwatch_log_group" "this" {
-  name              = "/aws/lambda/${aws_lambda_function.this.function_name}"
-  skip_destroy      = "true"
-  retention_in_days = 90
+  principal     = "s3.amazonaws.com"
+  source_arn    = var.temp_bucket.arn
 }

@@ -11,9 +11,22 @@
 			"FISMA",
 			"hostedzone",
 			"ISSO",
+			"latlng",
 			"manylinux",
 			"pycache",
 			"tfapply"
+		],
+		"python.analysis.autoFormatStrings": true,
+		"python.analysis.completeFunctionParens": true,
+		"python.analysis.inlayHints.functionReturnTypes": true,
+		"python.analysis.inlayHints.variableTypes": true,
+		"python.languageServer": "Jedi",
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter"
+		},
+			"black-formatter.args": [
+			"--line-length",
+			"139"
 		]
 	}
 }

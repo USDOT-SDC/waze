@@ -1,5 +1,5 @@
 import sys
-sys.path.append("/site-packages")
+sys.path.append("./site-packages")
 from typing import Literal
 
 
