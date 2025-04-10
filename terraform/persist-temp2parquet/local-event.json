@@ -1,0 +1,38 @@
+{
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "us-east-1",
+      "eventTime": "2025-04-09T18:42:00.123Z",
+      "eventName": "ObjectCreated:Put",
+      "userIdentity": {
+        "principalId": "AWS:EXAMPLEUSER"
+      },
+      "requestParameters": {
+        "sourceIPAddress": "192.0.2.1"
+      },
+      "responseElements": {
+        "x-amz-request-id": "EXAMPLEREQUESTID",
+        "x-amz-id-2": "EXAMPLEID2/..."
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "example-config-id",
+        "bucket": {
+          "name": "gov.dot.sdc.dev.waze.temp",
+          "ownerIdentity": {
+            "principalId": "EXAMPLE"
+          },
+          "arn": "arn:aws:s3:::gov.dot.sdc.dev.waze.temp"
+        },
+        "object": {
+          "key": "irregularities/484433.json",
+          "size": 12345,
+          "eTag": "abc123etagvalue",
+          "sequencer": "005E6A7D7F0000000000000000000000"
+        }
+      }
+    }
+  ]
+}

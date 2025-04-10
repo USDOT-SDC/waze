@@ -29,6 +29,11 @@ module "ingest2ddb" {
   common              = local.common
   partner_id          = nonsensitive(data.aws_ssm_parameter.partner_id.value)
   orchestrator_lambda = module.ingest_orchestrator.lambda
+  ddb_table = {
+    alerts         = aws_dynamodb_table.ingest["waze_ingest_alerts"],
+    irregularities = aws_dynamodb_table.ingest["waze_ingest_irregularities"],
+    jams           = aws_dynamodb_table.ingest["waze_ingest_jams"],
+  }
 }
 
 module "delete_ddb" {
@@ -38,3 +43,36 @@ module "delete_ddb" {
   common         = local.common
   deletion_queue = aws_sqs_queue.deletion
 }
+
+module "persist_ddb2temp" {
+  module_name = "Persist from DDB to Temp"
+  module_slug = "persist_ddb2temp"
+  source      = "./persist-ddb2temp"
+  common      = local.common
+  ddb_table = {
+    alerts         = aws_dynamodb_table.ingest["waze_ingest_alerts"],
+    irregularities = aws_dynamodb_table.ingest["waze_ingest_irregularities"],
+    jams           = aws_dynamodb_table.ingest["waze_ingest_jams"],
+  }
+  temp_bucket = aws_s3_bucket.temp
+}
+
+module "persist_temp2parquet" {
+  module_name                = "Persist from Temp to Parquet"
+  module_slug                = "persist_temp2parquet"
+  source                     = "./persist-temp2parquet"
+  common                     = local.common
+  temp_bucket                = aws_s3_bucket.temp
+  data_lake_bucket           = aws_s3_bucket.data_lake
+  lambda_persist_temp2delete = module.persist_temp2delete.lambda_function
+}
+
+module "persist_temp2delete" {
+  module_name    = "Persist from Temp to Parquet"
+  module_slug    = "persist_temp2delete"
+  source         = "./persist-temp2delete"
+  common         = local.common
+  temp_bucket    = aws_s3_bucket.temp
+  deletion_queue = aws_sqs_queue.deletion
+}
+ 
