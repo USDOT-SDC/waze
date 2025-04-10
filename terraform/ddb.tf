@@ -5,7 +5,7 @@ variable "ddb_table_names" {
 }
 
 # Create a DynamoDB table for each data type
-resource "aws_dynamodb_table" "this" {
+resource "aws_dynamodb_table" "ingest" {
   for_each     = toset(var.ddb_table_names)
   name         = each.key
   # billing_mode = "PROVISIONED"
