@@ -25,7 +25,7 @@ resource "aws_lambda_function" "this" {
   handler          = "lambda_function.lambda_handler"
   runtime          = local.runtime
   timeout          = 900
-  memory_size      = 8192
+  memory_size      = 10240
   environment {
     variables = {
       TEMP_BUCKET = var.temp_bucket.bucket
